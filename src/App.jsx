@@ -19,17 +19,8 @@ export default function App() {
   const [Name,setUsername] = useState("");
   const [temp,setTemp]=useState("");
   const [mass,setMass]=useState("");
+  const [ukus,setUKUS]=useState("");
 
-  const ukus = "us";
-  const setUKUS = () => {
-    if(ukus=="us"){
-      setMass("pounds");
-      setTemp("fahrenheit");
-    }else{
-      setMass("stones");
-  setTemp("Celsius");
-    }
-  }
   const generateRandomStory = () => {
     const xItems = ["Willy the Goblin", "Big Daddy", "Father Christmas"];
     const yItems = ["the soup kitchen", "Disneyland", "the White House"];
@@ -42,6 +33,15 @@ export default function App() {
     const randomXItem = randomValueFromArray(xItem);
     const randomYItem = randomValueFromArray(yItem);
     const randomZItem = randomValueFromArray(zItem);
+    
+    if (ukus === "uk") {
+      setMass("stones");
+      setTemp("Celsius");
+    } else {
+      setMass("pounds");
+      setTemp("Fahrenheit");
+    }
+  
     
     if(customName!==""){
       setUsername(customName);
@@ -62,9 +62,9 @@ export default function App() {
       </div>
       <div>
         <label htmlFor="us">US</label>
-        <input type="radio" value="us" checked onClick={setUKUS}/>
+        <input type="radio" value="us"  onChange={() => setUKUS("us")}/>
         <label htmlFor="uk">UK</label>
-        <input type="radio" value="uk"  onClick={setUKUS}/>
+        <input type="radio" value="uk"    onChange={() => setUKUS("uk")}/>
       </div>
       <div>
         <button onClick={generateRandomStory}>Generate random story</button>
